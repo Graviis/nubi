@@ -7,4 +7,11 @@ declare module "next-auth/jwt" {
     /** The user's role. */
     userRole?: "admin"
   }
+
+}
+
+declare module "next-auth" {
+  interface Session {
+    id: string
+  }
 }

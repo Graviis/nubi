@@ -1,0 +1,1 @@
+- No preocuparse por la implementacion o abstraccion, just make it works

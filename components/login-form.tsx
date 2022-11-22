@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { z } from "zod";
 import { loginAuthSchema } from "@/lib/validations/auth";
@@ -5,14 +6,14 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Icons } from "./icons";
 import { signIn } from "next-auth/react";
-import Router, { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
-interface LoginFormProps extends React.HTMLAttributes<HTMLDivElement> { }
+interface LoginFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 type FormData = z.infer<typeof loginAuthSchema>;
 
 export function LoginForm({ className, ...props }: LoginFormProps) {
-  const router = useRouter()
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -23,21 +24,21 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
 
   async function onSubmit(data: FormData) {
     setIsLoading(true);
-    const response = await signIn("credentials", { ...data, redirect: false })
+    const response = await signIn("credentials", { ...data, redirect: false });
 
-    if (response?.error && response.error == 'LoginWrongPasswordError') {
-      setError('password', { "message": "The password is wrong" })
-      return
+    if (response?.error && response.error == "LoginWrongPasswordError") {
+      setError("password", { message: "The password is wrong" });
+      return;
     }
 
-    if (response?.error && response.error == 'LoginWrongEmailError') {
-      setError('email', {
-        "message": "The email is wrong"
-      })
-      return
+    if (response?.error && response.error == "LoginWrongEmailError") {
+      setError("email", {
+        message: "The email is wrong",
+      });
+      return;
     }
-    setIsLoading(false)
-    router.push('/')
+    setIsLoading(false);
+    router.push("/");
   }
 
   return (
@@ -48,7 +49,7 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
             <label htmlFor="email">Email</label>
             <input
               id="email"
-              className="my-0 mb-3 h-10 py-2.5 px-3 w-full rounded-lg border border-slate-100 text-sm  hover:border-slate-300 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:ring-offset-1"
+              className="my-0 mb-3 h-10 w-full rounded-lg border border-slate-100 py-2.5 px-3 text-sm  hover:border-slate-300 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:ring-offset-1"
               type="email"
               autoCapitalize="none"
               autoComplete="email"
@@ -67,7 +68,7 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
             <input
               id="password"
               placeholder=""
-              className="my-0 mb-3 h-10 py-2.5 px-3 w-full rounded-lg border border-slate-100 text-sm  hover:border-slate-300 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:ring-offset-1"
+              className="my-0 mb-3 h-10 w-full rounded-lg border border-slate-100 py-2.5 px-3 text-sm  hover:border-slate-300 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:ring-offset-1"
               type="password"
               autoCapitalize="none"
               autoComplete="password"
@@ -81,7 +82,7 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
               </p>
             )}
           </div>
-          <button className="inline-flex w-full items-center justify-center rounded-lg px-5 py-2.5 text-center text-sm font-medium bg-sky-500  text-white  focus:outline-none focus:ring-2 focus:ring-sky-600 hover:ring-sky-800">
+          <button className="inline-flex w-full items-center justify-center rounded-lg bg-sky-500 px-5 py-2.5 text-center text-sm font-medium  text-white  hover:ring-sky-800 focus:outline-none focus:ring-2 focus:ring-sky-600">
             {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}

@@ -1,12 +1,13 @@
+"use client";
 import React from "react";
-import { string, z } from "zod";
+import { z } from "zod";
 import { registerAuthSchema } from "@/lib/validations/auth";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Icons } from "./icons";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
-interface RegisterFormProps extends React.HTMLAttributes<HTMLDivElement> { }
+interface RegisterFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 type FormData = z.infer<typeof registerAuthSchema>;
 
@@ -29,17 +30,17 @@ export function RegisterForm({ className, ...props }: RegisterFormProps) {
 
     if (!response?.ok) {
       if (response.status == 403) {
-        const fieldToErrorMessage: { [key in keyof FormData]: string }
-          = await response.json()
+        const fieldToErrorMessage: { [key in keyof FormData]: string } =
+          await response.json();
 
         type FormData = z.infer<typeof registerAuthSchema>;
         let k: keyof typeof fieldToErrorMessage;
         for (k in fieldToErrorMessage) {
-          setError(k, { type: 'custom', message: fieldToErrorMessage[k] })
+          setError(k, { type: "custom", message: fieldToErrorMessage[k] });
         }
       }
-      setIsLoading(false)
-      return
+      setIsLoading(false);
+      return;
     }
 
     router.push("/");
@@ -55,7 +56,7 @@ export function RegisterForm({ className, ...props }: RegisterFormProps) {
             <label htmlFor="name">Nombre</label>
             <input
               id="name"
-              className="my-0 mb-3 h-10 py-2.5 px-3 w-full rounded-lg border border-slate-100 text-sm  hover:border-slate-300 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:ring-offset-1"
+              className="my-0 mb-3 h-10 w-full rounded-lg border border-slate-100 py-2.5 px-3 text-sm  hover:border-slate-300 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:ring-offset-1"
               type="text"
               autoCapitalize="none"
               autoComplete="name"
@@ -71,7 +72,7 @@ export function RegisterForm({ className, ...props }: RegisterFormProps) {
             <label htmlFor="email">Email</label>
             <input
               id="email"
-              className="my-0 mb-3 h-10 py-2.5 px-3 w-full rounded-lg border border-slate-100 text-sm  hover:border-slate-300 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:ring-offset-1"
+              className="my-0 mb-3 h-10 w-full rounded-lg border border-slate-100 py-2.5 px-3 text-sm  hover:border-slate-300 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:ring-offset-1"
               type="email"
               autoCapitalize="none"
               autoComplete="email"
@@ -90,7 +91,7 @@ export function RegisterForm({ className, ...props }: RegisterFormProps) {
             <input
               id="password"
               placeholder=""
-              className="my-0 mb-3 h-10 py-2.5 px-3 w-full rounded-lg border border-slate-100 text-sm  hover:border-slate-300 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:ring-offset-1"
+              className="my-0 mb-3 h-10 w-full rounded-lg border border-slate-100 py-2.5 px-3 text-sm  hover:border-slate-300 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:ring-offset-1"
               type="password"
               autoCapitalize="none"
               autoComplete="password"
@@ -104,7 +105,7 @@ export function RegisterForm({ className, ...props }: RegisterFormProps) {
               </p>
             )}
           </div>
-          <button className="inline-flex w-full items-center justify-center rounded-lg px-5 py-2.5 text-center text-sm font-medium bg-sky-500  text-white  focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-sky-600 hover:ring-sky-800">
+          <button className="inline-flex w-full items-center justify-center rounded-lg bg-sky-500 px-5 py-2.5 text-center text-sm font-medium  text-white  hover:ring-sky-800 focus:outline-none focus:ring-2 focus:ring-sky-600 focus:ring-offset-1">
             {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}

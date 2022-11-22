@@ -48,6 +48,9 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+
+  organizationId String?
+  organization   Organization? @relation(fields: [organizationId], references: [id])
 }
 
 model VerificationToken {
@@ -56,4 +59,57 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Organization {
+  id   String @id @default(cuid())
+  name String
+
+  users     User[]
+  histories History[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum HistoryStatus {
+  DRAFT
+  ON_REVIEW
+  APPROVED
+  DISCREPANCY
+  SIGNING
+  COMPLETE
+}
+
+enum SurgeryType {
+  DEPOSIT // Deposito
+  BAIL // Fianza
+}
+
+model History {
+  id   Int    @id @default(autoincrement())
+  name String
+
+  surgeryDate DateTime
+  surgeryType SurgeryType
+  doctor String
+  notes String
+  // TODO: Add materials, this can be text, images, etc.
+
+  status         HistoryStatus @default(DRAFT)
+  organizationId String
+  organization   Organization  @relation(fields: [organizationId], references: [id])
+
+  changes HistoryChanges[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model HistoryChanges {
+  id        Int            @id @default(autoincrement())
+  from      HistoryStatus?
+  to        HistoryStatus
+  historyId Int
+  history   History        @relation(fields: [historyId], references: [id])
 }

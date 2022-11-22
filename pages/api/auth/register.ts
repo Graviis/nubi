@@ -11,7 +11,7 @@ async function register(req: NextApiRequest, res: NextApiResponse) {
   const { body } = req;
   const result = await registerAuthSchema.safeParseAsync(JSON.parse(body));
 
-  if (!result.success) {
+  if (result.success === false) {
     return res.status(400).send(result.error.errors);
   }
   const { name, email, password } = result.data;

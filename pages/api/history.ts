@@ -31,7 +31,8 @@ router.post(async (req, res) => {
       surgeryDate: data.surgeryDate,
       surgeryType: data.surgeryType as SurgeryType,
       name: data.name,
-      organizationId: user.organizationId as string,
+      organizationId: user.organizationId,
+      notes: data.notes,
       changes: {
         create: {
           to: "DRAFT",
@@ -48,7 +49,7 @@ router.post(async (req, res) => {
 
 export default router.handler({
   onError: (err, req, res) => {
-    console.error(err.stack);
+    console.error(err);
     res.status(500).end("Something broke!");
   },
   onNoMatch: (req, res) => {

@@ -12,6 +12,7 @@ import {
   TableBody,
   Badge,
   Button,
+  Color,
 } from "@tremor/react";
 
 var localizedFormat = require("dayjs/plugin/localizedFormat");
@@ -62,7 +63,7 @@ export function HistoriesTable({ histories }: historiesTableProps) {
                 <Badge
                   text={statusMap[item.status]}
                   size="xs"
-                  color={statusMapColor[item.status]}
+                  color={statusMapColor[item.status] as Color}
                 />
               </TableCell>
               <TableCell>

@@ -23,7 +23,6 @@ export default async function HistoriesPage() {
   }
   const histories = await getHistoriesForUserOrganization(user.organizationId);
 
-  console.log("histories", histories);
   return (
     <main className="pt-10">
       <h1 className="text-4xl font-bold">Historias</h1>

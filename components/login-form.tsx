@@ -38,7 +38,7 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
       return;
     }
     setIsLoading(false);
-    router.push("/");
+    router.push("/histories");
   }
 
   return (

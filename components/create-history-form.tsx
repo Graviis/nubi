@@ -106,7 +106,7 @@ export function CreateHistoryForm() {
                 >
                   <Listbox.Label>Tipo de cirugia</Listbox.Label>
                   <div className="relative mt-2">
-                    <Listbox.Button className="relative w-full cursor-default rounded-lg border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm">
+                    <Listbox.Button className="focus:border-gray-500-500 relative w-full cursor-default rounded-lg border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:outline-none focus:ring-1 focus:ring-gray-500 sm:text-sm">
                       {value
                         ? surgeryTypeOptions.find((o) => o.value == value)?.name
                         : "Selecciona una opcion"}

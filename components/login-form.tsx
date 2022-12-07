@@ -37,8 +37,8 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
       });
       return;
     }
-    setIsLoading(false);
     router.push("/histories");
+    // setIsLoading(false);
   }
 
   return (
@@ -49,7 +49,7 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
             <label htmlFor="email">Email</label>
             <input
               id="email"
-              className="my-0 mb-3 h-10 w-full rounded-lg border border-slate-100 py-2.5 px-3 text-sm  hover:border-slate-300 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:ring-offset-1"
+              className="my-0 mb-3 h-10 w-full rounded-lg border border-gray-200 bg-gray-50 py-2.5 px-3 text-sm focus:border-gray-500 focus:bg-white focus:outline-none focus:ring-gray-500"
               type="email"
               autoCapitalize="none"
               autoComplete="email"
@@ -67,8 +67,7 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
             <label htmlFor="password">Contraseña</label>
             <input
               id="password"
-              placeholder=""
-              className="my-0 mb-3 h-10 w-full rounded-lg border border-slate-100 py-2.5 px-3 text-sm  hover:border-slate-300 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:ring-offset-1"
+              className="my-0 mb-3 h-10 w-full rounded-lg border border-gray-200 bg-gray-50 py-2.5 px-3 text-sm focus:border-gray-500 focus:bg-white focus:outline-none focus:ring-gray-500"
               type="password"
               autoCapitalize="none"
               autoComplete="password"
@@ -82,7 +81,10 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
               </p>
             )}
           </div>
-          <button className="inline-flex w-full items-center justify-center rounded-lg bg-sky-500 px-5 py-2.5 text-center text-sm font-medium  text-white  hover:ring-sky-800 focus:outline-none focus:ring-2 focus:ring-sky-600">
+          <button
+            className="inline-flex w-full items-center justify-center rounded-lg bg-slate-900 px-5 py-2.5 text-center text-sm font-medium  text-white  hover:bg-slate-600 focus:outline-none focus:ring-2 focus:ring-slate-600"
+            disabled={isLoading}
+          >
             {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}

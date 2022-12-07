@@ -24,15 +24,11 @@ export default async function HistoriesPage() {
   const histories = await getHistoriesForUserOrganization(user.organizationId);
 
   return (
-    <main className="pt-10">
-      <h1 className="text-4xl font-bold">Historias</h1>
-      <p className="pb-8">
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
-      </p>
+    <section className="container items-center justify-center pt-6 pb-8 md:pt-10 md:pb-12 lg:pt-16 lg:pb-24">
       <div className="mb-4 flex justify-end">
         <CreateHistoryModal />
       </div>
       <HistoriesTable histories={histories} />
-    </main>
+    </section>
   );
 }

@@ -12,7 +12,7 @@ export function CreateHistoryModal() {
       <button
         disabled={isOpen}
         onClick={() => setIsOpen(true)}
-        className="inline-flex items-center justify-center rounded-lg bg-sky-500 px-5 py-2.5 text-center text-sm font-medium  text-white  hover:ring-sky-800 focus:outline-none focus:ring-2 focus:ring-sky-600 disabled:bg-gray-400"
+        className="inline-flex items-center justify-center rounded-lg border border-gray-900 bg-white  px-5 py-2.5 text-center  text-sm font-medium text-gray-900 ring-gray-900 hover:bg-gray-900 hover:text-white focus:outline-none focus:ring-2 disabled:bg-gray-400"
       >
         Crear historia
       </button>

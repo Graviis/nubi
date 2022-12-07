@@ -14,6 +14,7 @@ import {
   Button,
   Color,
 } from "@tremor/react";
+import { useRouter } from "next/navigation";
 
 var localizedFormat = require("dayjs/plugin/localizedFormat");
 dayjs.extend(localizedFormat);
@@ -41,6 +42,8 @@ const statusMapColor = {
 };
 
 export function HistoriesTable({ histories }: historiesTableProps) {
+  const router = useRouter();
+
   return (
     <Card>
       <Table marginTop="mt-6">
@@ -71,6 +74,7 @@ export function HistoriesTable({ histories }: historiesTableProps) {
                   size="xs"
                   importance="secondary"
                   text="Ver detalle"
+                  handleClick={() => router.push(`/histories/${item.id}`)}
                   color="gray"
                 />
               </TableCell>
